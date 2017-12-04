@@ -98,20 +98,20 @@
 
 
 				if (target.hasClass('selected')) {
-					images.removeClass('not-selected');
+					// images.removeClass('not-selected');
 					target.removeClass('selected');
 					audiobar.fadeOut(200);
 				}
 				else {
 					images.removeClass('selected');
-					images.addClass('not-selected');
+					// images.addClass('not-selected');
 
 					target.addClass('selected');
-					target.removeClass('not-selected');
+					// target.removeClass('not-selected');
 
 					audiobar.fadeIn(200);
 					audiobar[0].src = target[0].dataset.url;
-					target.addClass('selected');
+					audiobar.play();
 				}
 			}
 			$('document').ready(function() {

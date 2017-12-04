@@ -133,7 +133,7 @@ body {
 	border: 2px solid #dddddd;
 }
 
-.card-img .selected {
+.card-img.selected {
 	border: 2px solid #dddddd;
 }
 

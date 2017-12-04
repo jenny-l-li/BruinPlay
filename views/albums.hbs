@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>{{title}}</title>
+	<title>BruinPlay</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js">
 	<link rel="stylesheet" type="text/css" href="/css/style.css" />
@@ -30,14 +30,14 @@
 		  <a class="navbar-brand" href="#">Library</a>
 		  <div class="collapse navbar-collapse" id="navbarNav">
 		    <ul class="navbar-nav">
-		      <li class="nav-item active">
-		        <a class="nav-link" href="#" onClick="setLocation('/')">Home <span class="sr-only">(current)</span></a>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#" onClick="setLocation('/')">Home</a>
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="#" onClick="setOverlayDisplay(true)">Add Song</a>
 		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="/albums" onClick="setLocation('/albums')">View Albums</a>
+		      <li class="nav-item active">
+		        <a class="nav-link" onClick="setLocation('/albums')">View Albums <span class="sr-only">(current)</span></a>
 		      </li>
 		    </ul>
 		  </form>
@@ -49,27 +49,19 @@
 	            <div class="right"><h1>BruinPlay</h1></div>
 	    </div>			
 		<div class="row photo-row">
-		{{#each songs}}
+		{{#each albums}}
 			<div class="col-md-3 col-sm-6">
+				{{#if this.albumName}}
 				<div class="card">
-					{{#if this.audioImageSrc}}
-					<img class="card-img img-center" data-url="{{this.audioSrc}}" src="{{this.audioImageSrc}}">
-					{{else}}
-					<img class="card-img img-center" data-url="{{this.audioSrc}}" src="{{this.albumCoverSrc}}">
-					{{/if}}
-
-					<h3>{{this.title}}</h3> 
-					<p>{{this.artistName}}</p>
-					<p>{{this.albumName}}</p>
+					<img class="card-album img-center" src="{{this.albumCoverSrc}}">
+					<h3 style="margin: auto;">{{this.albumName}}</h3>
 				</div>
-				<div class="top-right"><a href="/songs/delete/{{this.title}}">✕</a></div>
+				{{/if}}
 			</div>
 		{{/each}}
 		</div>
 	</div>
 	<script src="/js/script.js"></script>
-
-	<audio controls class="aud-bot" style="display: none"></audio>
 
 	<script type="text/javascript">
             function setOverlayDisplay(show) {
@@ -86,37 +78,6 @@
                 window.location = url;
             }
 
-
-			function attachEventHandlers() {
-				$('.card-img').on('click', handleImageClick);
-			}
-
-			function handleImageClick(event) {
-				const target = $(event.target);
-				const images = $('.photo-row .card-img');
-				const audiobar = $('.aud-bot')
-
-
-				if (target.hasClass('selected')) {
-					images.removeClass('not-selected');
-					target.removeClass('selected');
-					audiobar.fadeOut(200);
-				}
-				else {
-					images.removeClass('selected');
-					images.addClass('not-selected');
-
-					target.addClass('selected');
-					target.removeClass('not-selected');
-
-					audiobar.fadeIn(200);
-					audiobar[0].src = target[0].dataset.url;
-					preview.css('background-image', target.css('background-image'));
-				}
-			}
-			$('document').ready(function() {
-				attachEventHandlers();
-			});
         </script>
 </body>
 

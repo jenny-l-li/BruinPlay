@@ -111,7 +111,7 @@
 
 					audiobar.fadeIn(200);
 					audiobar[0].src = target[0].dataset.url;
-					preview.css('background-image', target.css('background-image'));
+					target.addClass('selected');
 				}
 			}
 			$('document').ready(function() {
